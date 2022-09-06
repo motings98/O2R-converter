@@ -1,8 +1,9 @@
 # O2R-converter
 convert osu! beatmap to Ragnarock song
+
 Now only 4k mania beatmap is supported, taiko mode is working in progress
 
-## Required
+## Requirements
 pillow
 
 pydub
