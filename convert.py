@@ -143,7 +143,7 @@ def convert(dir):
     for i in range(len(song_meta)):
         diff_lists.append(DiffMaps(ranks[i], rank_levels[i], ranks[i]+".dat").__dict__)
 
-    info = Info(song_meta[0][0], song_meta[0][1], "Hung", song_meta[0][3], duration, "song.ogg",
+    info = Info(song_meta[0][0], song_meta[0][1], song_meta[0][5], song_meta[0][3], duration, "song.ogg",
                 "image.jpg", diff_lists)
     info_content = info.__dict__
 
@@ -177,6 +177,8 @@ def osu_file_convert(input, diffname):
             title = line.split(":")[1].replace("\n", "")
         if "Artist:" in line:
             composer = line.split(":")[1].replace("\n", "")
+        if "Creator:" in line:
+            creator = line.split(":")[1].replace("\n", "")
 
         if readbpm:
             elements = line.split(",")
@@ -229,10 +231,9 @@ def osu_file_convert(input, diffname):
     s = json.dumps(note_file, sort_keys=False, indent=4, separators=(',', ': '))
     save.write(s)
     save.close()
-    return [title, composer, diffname + ".dat", global_bpm, save_dir]
+    return [title, composer, diffname + ".dat", global_bpm, save_dir, creator]
 
 
 if __name__ == '__main__':
-
     convert(r"E:\osu!\Songs\1793916 Leo_need x Hatsune Miku - HIBANA -Reloaded-")
 
